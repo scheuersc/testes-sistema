@@ -1,6 +1,6 @@
 package br.com.main;
 
-import br.com.release.*;
+import br.com.release.login.*;
 
 public class Main {
 
