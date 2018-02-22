@@ -1,4 +1,4 @@
-package br.com.release;
+package br.com.release.login;
 
 import static org.junit.Assert.assertEquals;
 
