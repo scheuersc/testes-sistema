@@ -1,30 +1,29 @@
 package br.com.release.login;
 
-import static org.junit.Assert.*;
-
 import java.util.concurrent.TimeUnit;
+
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TestSeleniumChrome {
-	
+public class LoginFirefox {
+
 	private String projectLocation = System.getProperty("user.dir");
-	private final static String URL = "http://192.168.124.128:10100";
+	private final static String URL = "http://172.16.186.128:10100";
 	
 	@Test
-	public boolean testLoginInvalidoChrome() {
+	public boolean testLoginInvalidoFirefox() {
 
-		System.setProperty("webdriver.chrome.driver", projectLocation + "/lib/chromedriver/chromedriver");
+		System.setProperty("webdriver.gecko.driver", projectLocation + "/lib/geckdriver/geckodriver");
+		//System.setProperty("webdriver.firefox.bin", "/Applications/Firefox.app/Contents/MacOS/firefox-bin");
 
-		WebDriver browser = new ChromeDriver();
+		WebDriver browser = new FirefoxDriver();
 		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
 		browser.get(URL);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtUsuario")).sendKeys("suport@marconsoft.com.br");
-		browser.findElement(By.name("frmLogin")).findElement(By.name("txtSenha")).sendKeys("!efacil#rul3z");
+		browser.findElement(By.name("frmLogin")).findElement(By.name("txtSenha")).sendKeys("!efacil#rul3z1");
 		browser.findElement(By.name("frmLogin")).findElement(By.name("cmdEntrar")).click();
 		
 		String results = browser.findElement(By.id("containerErros")).findElement(By.id("erros")).getText();
@@ -35,11 +34,12 @@ public class TestSeleniumChrome {
 	}
 	
 	@Test
-	public boolean testLoginCorretoChrome() {
+	public boolean testLoginCorretoFirefox() {
 
-		System.setProperty("webdriver.chrome.driver", projectLocation + "/lib/chromedriver/chromedriver");
+		System.setProperty("webdriver.gecko.driver", projectLocation + "/lib/geckdriver/geckodriver");
+		//System.setProperty("webdriver.firefox.bin", "/Applications/Firefox.app/Contents/MacOS/firefox-bin");
 
-		WebDriver browser = new ChromeDriver();
+		WebDriver browser = new FirefoxDriver();
 		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
 		browser.get(URL);
@@ -55,11 +55,12 @@ public class TestSeleniumChrome {
 	}
 	
 	@Test
-	public boolean testLoginSQLInjectChrome() {
+	public boolean testLoginSQLInjectFirefox() {
 
-		System.setProperty("webdriver.chrome.driver", projectLocation + "/lib/chromedriver/chromedriver");
+		System.setProperty("webdriver.gecko.driver", projectLocation + "/lib/geckdriver/geckodriver");
+		//System.setProperty("webdriver.firefox.bin", "/Applications/Firefox.app/Contents/MacOS/firefox-bin");
 
-		WebDriver browser = new ChromeDriver();
+		WebDriver browser = new FirefoxDriver();
 		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
 		browser.get(URL);
@@ -73,13 +74,14 @@ public class TestSeleniumChrome {
 			return true;
 		return false;
 	}
-
+	
 	@Test
-	public boolean testLoginForcaBrutaChrome() {
+	public boolean testLoginForcaBrutaFirefox() {
 
-		System.setProperty("webdriver.chrome.driver", projectLocation + "/lib/chromedriver/chromedriver");
+		System.setProperty("webdriver.gecko.driver", projectLocation + "/lib/geckdriver/geckodriver");
+		//System.setProperty("webdriver.firefox.bin", "/Applications/Firefox.app/Contents/MacOS/firefox-bin");
 
-		WebDriver browser = new ChromeDriver();
+		WebDriver browser = new FirefoxDriver();
 		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		String results; 
 		
@@ -98,9 +100,8 @@ public class TestSeleniumChrome {
 		
 		results = browser.findElement(By.tagName("h4")).getText();
 		browser.quit();
-		if (results.equals("Clique na banca que deseja acessar:"))
+		if (results.equals("Clique na banca que deseja acessar:" ))
 			return true;
 		return false;
 	}
-
 }
