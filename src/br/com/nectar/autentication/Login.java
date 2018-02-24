@@ -1,25 +1,18 @@
-package br.com.release.login;
+package br.com.nectar.autentication;
 
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import br.com.nectar.browser.Driver;
 
-public class LoginFirefox {
+public class Login {
 
-	private String projectLocation = System.getProperty("user.dir");
-	private final static String URL = "http://172.16.186.128:10100";
+	private final String URL = "http://172.16.186.128:10100";
 	
 	@Test
-	public boolean testLoginInvalidoFirefox() {
-
-		System.setProperty("webdriver.gecko.driver", projectLocation + "/lib/geckdriver/geckodriver");
-		//System.setProperty("webdriver.firefox.bin", "/Applications/Firefox.app/Contents/MacOS/firefox-bin");
-
-		WebDriver browser = new FirefoxDriver();
-		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	public boolean testLoginInvalido(WebDriver browser) {
 
 		browser.get(URL);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtUsuario")).sendKeys("suport@marconsoft.com.br");
@@ -34,13 +27,7 @@ public class LoginFirefox {
 	}
 	
 	@Test
-	public boolean testLoginCorretoFirefox() {
-
-		System.setProperty("webdriver.gecko.driver", projectLocation + "/lib/geckdriver/geckodriver");
-		//System.setProperty("webdriver.firefox.bin", "/Applications/Firefox.app/Contents/MacOS/firefox-bin");
-
-		WebDriver browser = new FirefoxDriver();
-		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	public boolean testLoginCorreto(WebDriver browser) {
 
 		browser.get(URL);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtUsuario")).sendKeys("suporte@marconsoft.com.br");
@@ -55,14 +42,7 @@ public class LoginFirefox {
 	}
 	
 	@Test
-	public boolean testLoginSQLInjectFirefox() {
-
-		System.setProperty("webdriver.gecko.driver", projectLocation + "/lib/geckdriver/geckodriver");
-		//System.setProperty("webdriver.firefox.bin", "/Applications/Firefox.app/Contents/MacOS/firefox-bin");
-
-		WebDriver browser = new FirefoxDriver();
-		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
+	public boolean testLoginSQLInject(WebDriver browser) {
 		browser.get(URL);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtUsuario")).sendKeys("suport@marconsoft.com.br");
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtSenha")).sendKeys("!efacil#rul3z");
@@ -76,17 +56,11 @@ public class LoginFirefox {
 	}
 	
 	@Test
-	public boolean testLoginForcaBrutaFirefox() {
+	public boolean testLoginForcaBruta(WebDriver browser) {
 
-		System.setProperty("webdriver.gecko.driver", projectLocation + "/lib/geckdriver/geckodriver");
-		//System.setProperty("webdriver.firefox.bin", "/Applications/Firefox.app/Contents/MacOS/firefox-bin");
-
-		WebDriver browser = new FirefoxDriver();
-		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		String results; 
-		
+		String results;
+		browser.get(URL);
 		for (int i = 0; i < 15; i++) {
-			browser.get(URL);
 			browser.findElement(By.name("frmLogin")).findElement(By.name("txtUsuario")).sendKeys("suporte@marconsoft.com.br");//não permitir mais que 3 tentativas de logar com o mesmo usuário no mesmo computador
 			browser.findElement(By.name("frmLogin")).findElement(By.name("txtSenha")).sendKeys("!efacil#rul3z" + 0);
 			browser.findElement(By.name("frmLogin")).findElement(By.name("cmdEntrar")).click();
