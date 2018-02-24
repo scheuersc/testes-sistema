@@ -1,11 +1,8 @@
 package br.com.nectar.autentication;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import br.com.nectar.browser.Driver;
 
 public class Login {
 

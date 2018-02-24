@@ -1,17 +1,10 @@
 package br.com.nectar.acesso.cadastro;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
-
-import br.com.nectar.browser.Driver;
 
 public class Usuario {
 	
@@ -21,9 +14,10 @@ public class Usuario {
 		 * Bloco de inicial (autenticação de usuário e acesso ao sistema propriamente dito)
 		 * 
 		 * */
-		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
 		browser.get(URL);
+		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtUsuario")).sendKeys(user);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtSenha")).sendKeys(password);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("cmdEntrar")).click();
@@ -35,14 +29,13 @@ public class Usuario {
 		 * 
 		 * */
 		
-		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		
 		/*
 		 * Teste do Menu principal
 		 * 
 		 * */
-		browser.findElement(By.id("botaoMenuEsquerdo")).click();
-		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//		browser.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+//		browser.findElement(By.id("botaoMenuEsquerdo")).click();
+		
 		/*
 		 * Fim do teste do menu principal
 		 * 
@@ -53,6 +46,7 @@ public class Usuario {
  		 * Teste do formulário de cadastro de usuário
 		 * 
 		 * */
+		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		browser.get(URL + "/jedi-gt?nomeClasseXML=br.com.mns.acesso.Usuario");
 		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		/*
@@ -69,7 +63,7 @@ public class Usuario {
 		 * Preencher combobox sem possuir valores relatados no html.
 		 * 
 		 * */
-		//browser.findElement(By.xpath("//select[@id='prop_txt_codigoGrupo']")).sendKeys(group);;
+		browser.findElement(By.xpath("//select[@id='prop_txt_codigoGrupo']")).sendKeys(group);;
 		/*
 		 * 
 		 * Fim do preenchimento do combo
