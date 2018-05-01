@@ -22,7 +22,6 @@ public class LoginTest {
 	public void loginIvalid() {
 		Login objLogin = new Login(new FirefoxDriver());
 		String result = objLogin.testInvalidLogin(URL, "suporte@marconsoft.com.br", "erro");
-		System.out.println("Result: " + result);
 		Assert.assertEquals(result, "Usuário ou senha invalidos!");
 		
 		objLogin = new Login(new ChromeDriver());
@@ -44,11 +43,11 @@ public class LoginTest {
 	@Test
 	public void formSqlInjectionLogin() {
 		Login objLogin = new Login(new FirefoxDriver());
-		String result = objLogin.testFormSqlInjectLogin(URL, "suport@marconsoft.com.br", "!efacil#rul3z'");
+		String result = objLogin.testFormSqlInjectLogin(URL, "suporte@marconsoft.com.br", "' 1 = 1; --");
 		Assert.assertEquals(result, "Usuário ou senha invalidos!");
 		
 		objLogin = new Login(new ChromeDriver());
-		result = objLogin.testFormSqlInjectLogin(URL, "suport@marconsoft.com.br", "!efacil#rul3z'");
+		result = objLogin.testFormSqlInjectLogin(URL, "suporte@marconsoft.com.br", "' 1 = 1; --");
 		Assert.assertEquals(result, "Usuário ou senha invalidos!");
 	}
 	
