@@ -24,7 +24,7 @@ public class UserTest {
 	@Test
 	public void searchUsers() {
 		Users objUsers = new Users (new ChromeDriver());
-		String result = objUsers.testSearchUserRegistry(URL, "suporte@marconsoft.com.br", "!efacil#rul3z", "TESTE AUTOMATIZADO V2.0.2.1");
+		String result = objUsers.testSearch (URL, "suporte@marconsoft.com.br", "!efacil#rul3z", "TESTE AUTOMATIZADO V2.0.2.1");
 		boolean booResult = false;
 		if (result.contains("Cadastro de Usuario, ID")) {
 			booResult = true;
@@ -32,7 +32,7 @@ public class UserTest {
 		Assert.assertEquals(booResult, true);
 		
 		objUsers = new Users (new FirefoxDriver());
-		result = objUsers.testSearchUserRegistry(URL, "suporte@marconsoft.com.br", "!efacil#rul3z", "TESTE AUTOMATIZADO V2.0.2.1");
+		result = objUsers.testSearch (URL, "suporte@marconsoft.com.br", "!efacil#rul3z", "TESTE AUTOMATIZADO V2.0.2.1");
 		booResult = false;
 		if (result.contains("Cadastro de Usuario, ID")) {
 			booResult = true;
@@ -41,9 +41,9 @@ public class UserTest {
 	}
 
 	@Test
-	public void usersRegistry() {
+	public void saveUsers () {
 		Users objUsers = new Users (new ChromeDriver());
-		String result = objUsers.testUserRegistry(URL, username, password, "Teste Automatizado v2.0.2.1", "01teste@teste.com", "87206673708", "CAIXA", "48999999999", "20");
+		String result = objUsers.testSave (URL, username, password, "Teste Automatizado v2.0.2.1", "01teste@teste.com", "87206673708", "CAIXA", "48999999999", "20");
 		boolean booResult = false;
 		System.out.println("Result: " + result);
 		if (result.contains("Cadastro de Usuario, ID")) {
@@ -52,7 +52,7 @@ public class UserTest {
 		Assert.assertEquals(booResult, true);
 		
 		objUsers = new Users (new FirefoxDriver());
-		result = objUsers.testUserRegistry(URL, username, password, "Teste Automatizado v2.0.2.1", "01teste@teste.com", "87206673708", "CAIXA", "48999999999", "20");
+		result = objUsers.testSave (URL, username, password, "Teste Automatizado v2.0.2.1", "01teste@teste.com", "87206673708", "CAIXA", "48999999999", "20");
 		booResult = false;
 		System.out.println("Result: " + result);
 		if (result.contains("Cadastro de Usuario, ID")) {
@@ -62,7 +62,7 @@ public class UserTest {
 	}
 
 	@Test
-	public void userNotifyRegistryValidate () throws InterruptedException {
+	public void validateSaveUsers () throws InterruptedException {
 		String name = "";//Teste Automatizado v2.0.2.22";
 		String email = "";//'2teste@teste.com";
 		String cpf = "";//49737740653";
@@ -72,11 +72,11 @@ public class UserTest {
 		Boolean booResult = false;
 		
 		Users objUsers = new Users (new FirefoxDriver());
-		booResult = objUsers.testUserNotifyRegisterValidade(URL, username, password, name, email, cpf, group, disLimit, cel);
+		booResult = objUsers.testValidadeSave(URL, username, password, name, email, cpf, group, disLimit, cel);
 		Assert.assertEquals(true, booResult);
 		
 		objUsers = new Users(new ChromeDriver());
-		booResult = objUsers.testUserNotifyRegisterValidade(URL, username, password, name, email, cpf, group, disLimit, cel);
+		booResult = objUsers.testValidadeSave(URL, username, password, name, email, cpf, group, disLimit, cel);
 		Assert.assertEquals(true, booResult);
 	}
 
