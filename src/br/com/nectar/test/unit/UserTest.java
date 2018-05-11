@@ -6,7 +6,8 @@ import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import br.com.nectar.register.Users;;
+import br.com.nectar.register.Users;
+import br.com.nectar.utils.Util;;
 
 public class UserTest {
 		
@@ -23,8 +24,9 @@ public class UserTest {
 	
 	@Test
 	public void searchUsers() {
+		String name = "TESTE AUTOMATIZADO V2.0.2.1";
 		Users objUsers = new Users (new ChromeDriver());
-		String result = objUsers.testSearch (URL, "suporte@marconsoft.com.br", "!efacil#rul3z", "TESTE AUTOMATIZADO V2.0.2.1");
+		String result = objUsers.testSearch (URL, username, password, name);
 		boolean booResult = false;
 		if (result.contains("Cadastro de Usuario, ID")) {
 			booResult = true;
@@ -32,7 +34,7 @@ public class UserTest {
 		Assert.assertEquals(booResult, true);
 		
 		objUsers = new Users (new FirefoxDriver());
-		result = objUsers.testSearch (URL, "suporte@marconsoft.com.br", "!efacil#rul3z", "TESTE AUTOMATIZADO V2.0.2.1");
+		result = objUsers.testSearch (URL, username, password, name);
 		booResult = false;
 		if (result.contains("Cadastro de Usuario, ID")) {
 			booResult = true;
@@ -42,8 +44,14 @@ public class UserTest {
 
 	@Test
 	public void saveUsers () {
+		String name = Util.gerarString(50, "abcfefghijklmnopqrstuvwxyz0123456789");
+		String email = Util.gerarString(10, "abcfefghijklmnopqrstuvwxyz") + "@" + Util.gerarString(10, "abcfefghijklmnopqrstuvwxyz") + ".com";
+		String phone = Util.gerarString(10, "0123456789");
+		String group = "CAIXA";
+		String disLimit = "20";
+		
 		Users objUsers = new Users (new ChromeDriver());
-		String result = objUsers.testSave (URL, username, password, "Teste Automatizado v2.0.2.1", "01teste@teste.com", "87206673708", "CAIXA", "48999999999", "20");
+		String result = objUsers.testSave (URL, username, password, name, email, Util.gerarCPFValido(), group, phone, disLimit);
 		boolean booResult = false;
 		System.out.println("Result: " + result);
 		if (result.contains("Cadastro de Usuario, ID")) {
@@ -52,7 +60,7 @@ public class UserTest {
 		Assert.assertEquals(booResult, true);
 		
 		objUsers = new Users (new FirefoxDriver());
-		result = objUsers.testSave (URL, username, password, "Teste Automatizado v2.0.2.1", "01teste@teste.com", "87206673708", "CAIXA", "48999999999", "20");
+		result = objUsers.testSave (URL, username, password, name, email, Util.gerarCPFValido(), group, phone, disLimit);
 		booResult = false;
 		System.out.println("Result: " + result);
 		if (result.contains("Cadastro de Usuario, ID")) {
@@ -63,20 +71,20 @@ public class UserTest {
 
 	@Test
 	public void validateSaveUsers () throws InterruptedException {
-		String name = "";//Teste Automatizado v2.0.2.22";
-		String email = "";//'2teste@teste.com";
-		String cpf = "";//49737740653";
+		String name = Util.gerarString(50, "abcfefghijklmnopqrstuvwxyz0123456789");
+		String email = Util.gerarString(10, "abcfefghijklmnopqrstuvwxyz") + "@" + Util.gerarString(10, "abcfefghijklmnopqrstuvwxyz") + ".com";
+		String phone = Util.gerarString(10, "0123456789");
 		String group = "CAIXA";
-		String disLimit = "48999999999";
-		String cel = "48996307564";
+		String disLimit = "20";
+		String cpf = "";//Util.gerarCPFValido();
 		Boolean booResult = false;
 		
 		Users objUsers = new Users (new FirefoxDriver());
-		booResult = objUsers.testValidadeSave(URL, username, password, name, email, cpf, group, disLimit, cel);
+		booResult = objUsers.testValidadeSave(URL, username, password, name, email, cpf, group, disLimit, phone);
 		Assert.assertEquals(true, booResult);
 		
 		objUsers = new Users(new ChromeDriver());
-		booResult = objUsers.testValidadeSave(URL, username, password, name, email, cpf, group, disLimit, cel);
+		booResult = objUsers.testValidadeSave(URL, username, password, name, email, cpf, group, disLimit, phone);
 		Assert.assertEquals(true, booResult);
 	}
 

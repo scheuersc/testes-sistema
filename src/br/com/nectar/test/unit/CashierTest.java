@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import br.com.nectar.financial.Cashier;
+import br.com.nectar.utils.Util;
 
 public class CashierTest {
 
@@ -25,10 +26,10 @@ public class CashierTest {
 	public void testSave() {
 		String description = "Descrição de teste";
 		String code = "2";
-		String cpfCnpj = "13036276203";
+		String cpf = Util.gerarCPFValido();
 		
 		Cashier objCashier = new Cashier (new ChromeDriver());
-		String result = objCashier.testSave(URL, username, password, description, code, cpfCnpj);
+		String result = objCashier.testSave(URL, username, password, description, code, cpf);
 		boolean booResult = false;
 		if (result.contains("Caixa, ID")) {
 			booResult = true;
@@ -49,10 +50,10 @@ public class CashierTest {
 	public void testValidateSave() {
 		String description = "";
 		String code = "2";
-		String cpfCnpj = "13036276203";
+		String cpf = Util.gerarCPFValido();
 		
 		Cashier objCashier = new Cashier (new ChromeDriver());
-		boolean booResult = objCashier.testValidadeSave(URL, username, password, description, code, cpfCnpj);
+		boolean booResult = objCashier.testValidadeSave(URL, username, password, description, code, cpf);
 		
 		Assert.assertEquals(booResult, true);
 	}
