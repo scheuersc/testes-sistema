@@ -22,7 +22,7 @@ public class Login {
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtSenha")).sendKeys(password);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("cmdEntrar")).click();
 		
-		String result = browser.findElement(By.id("containerErros")).findElement(By.id("erros")).getText();
+		String result = browser.findElement(By.id("containerErros")).findElement(By.className("mensagem")).findElement(By.id("erros")).getText();
 		browser.quit();
 
 		return result;
