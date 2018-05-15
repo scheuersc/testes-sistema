@@ -16,12 +16,13 @@ public class Login {
 	}
 	
 	public String testInvalidLogin(String URL, String username, String password) {
+		
 		browser.get(URL);
 		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtUsuario")).sendKeys(username);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtSenha")).sendKeys(password);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("cmdEntrar")).click();
-		
+		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		String result = browser.findElement(By.id("containerErros")).findElement(By.className("mensagem")).findElement(By.id("erros")).getText();
 		browser.quit();
 
@@ -36,7 +37,7 @@ public class Login {
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtUsuario")).sendKeys(username);//não permitir mais que 3 tentativas de logar com o mesmo usuário no mesmo computador
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtSenha")).sendKeys(password);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("cmdEntrar")).click();
-		
+		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		String result = browser.findElement(By.tagName("h4")).getText();
 		browser.quit();
 	
@@ -49,7 +50,8 @@ public class Login {
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtUsuario")).sendKeys(username);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtSenha")).sendKeys(password);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("cmdEntrar")).click();
-		
+		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		String result = browser.findElement(By.id("containerErros")).findElement(By.id("erros")).getText();
 		browser.quit();
 		
@@ -73,7 +75,7 @@ public class Login {
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtUsuario")).sendKeys(username);//não permitir mais que 3 tentativas de logar com o mesmo usuário no mesmo computador
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtSenha")).sendKeys(password);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("cmdEntrar")).click();
-		
+		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		result = browser.findElement(By.tagName("h4")).getText();
 		browser.quit();
 	
@@ -90,7 +92,7 @@ public class Login {
 		browser.findElement(By.name("frmLogin")).findElement(By.name("txtSenha")).sendKeys(password);
 		browser.findElement(By.name("frmLogin")).findElement(By.name("cmdEntrar")).click();
 		browser.findElement(By.className("bordaDiv")).click();
-		
+		browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		return browser;
 	}
 
