@@ -71,9 +71,9 @@ public class Cashier {
 		 * */
 		browser.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		String results = browser.findElement(By.className("Tabela03")).findElement(By.id("toString")).getText();
-		if (results.contains("Cadastro de Usuario, ID")){
-			System.out.println("achou");
-		}
+		//if (results.contains("Cadastro de Usuario, ID")){
+		//	System.out.println("achou");
+		//}
 		browser.quit();
 		return results;
 	}
@@ -118,8 +118,8 @@ public class Cashier {
 		
 		List<WebElement> divResultado = browser.findElements(By.className("ag-cell-value"));
 		for (WebElement x : divResultado) {
-			System.out.println("conferindo");
-			System.out.println(description.toUpperCase() + " = " + x.getText());
+			//System.out.println("conferindo");
+			//System.out.println(description.toUpperCase() + " = " + x.getText());
 			if (x.getText().contains(description.toUpperCase())) {
 				booResults = true;
 				x.click();
@@ -194,15 +194,14 @@ public class Cashier {
 		 * 
 		 * */
 		String notice = browser.findElement(By.className("ajs-content")).getText();
-		System.out.println("notice: " + notice);
 		if (notice.contains("Descricão")) {
 			booResults = true;
-			System.out.println("Faltou o campo obrigatório Descrição!");
+			//System.out.println("Faltou o campo obrigatório Descrição!");
 		}
 		//if (browser.findElement(By.className("ajs-ok")) != null)
 			//browser.findElement(By.className("ajs-ok")).click();
 		
-		//browser.quit();
+		browser.quit();
 		return booResults;
 	}
 
