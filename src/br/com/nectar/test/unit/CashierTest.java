@@ -12,9 +12,9 @@ import br.com.nectar.utils.Util;
 public class CashierTest {
 
 	private static final String projectLocation = System.getProperty("user.dir");
-	private String URL = "";//"http://172.16.101.128:10100";
-	private String username = "";//"suporte@marconsoft.com.br";
-	private String password = "";//"!efacil#rul3z";
+	private String URL = "http://172.16.101.128:10100";
+	private String username = "suporte@marconsoft.com.br";
+	private String password = "!efacil#rul3z";
 
 	public String getURL() {
 		return URL;
@@ -133,9 +133,10 @@ public class CashierTest {
 		String code = "";
 		String cpf = "";
 		boolean booResult = false;
-		Cashier objCashier = new Cashier(new FirefoxDriver());;
+		Cashier objCashier;
 
 		try {
+			objCashier = new Cashier(new FirefoxDriver());
 			description = Util.gerarString(50, "abcfefghijklmnopqrstuvwxyz0123456789");
 			code = Util.gerarString(50, "123456789");// "2";
 			cpf = Util.gerarCPFValido();

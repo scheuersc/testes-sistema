@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import org.junit.Assert;
@@ -36,6 +37,7 @@ public class NectarMain extends JFrame {
 	private JTextField txtUsername;
 	private JTextField txtPassword;
 	private JTextField txtDescription;
+	private JTextArea txtResult = new JTextArea();
 
 	/**
 	 * Launch the application.
@@ -69,6 +71,9 @@ public class NectarMain extends JFrame {
 	 * This method contains all of the code for create and initializing components
 	 */
 	public String testSave() {
+		System.setProperty("webdriver.chrome.driver", projectLocation + "/lib/chromedriver/chromedriver");
+		System.setProperty("webdriver.gecko.driver", projectLocation + "/lib/geckdriver/geckodriver");
+		
 		String resultSave = "Teste funcionalidade Salvar!";
 		String result;
 		String description;
@@ -184,8 +189,10 @@ public class NectarMain extends JFrame {
 		ctpMain = new JPanel();
 		ctpMain.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(ctpMain);
-		final JTextArea txtResult = new JTextArea();
+		ctpMain.add(txtResult, BorderLayout.CENTER);
 		
+		JScrollPane scroll = new JScrollPane(txtResult, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		ctpMain.add(scroll);
 		JButton btnAplicarTestes = new JButton("All testes Caixa");
 		btnAplicarTestes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -199,7 +206,7 @@ public class NectarMain extends JFrame {
 			}
 		});
 		
-		//JTextArea txtResult = new JTextArea();
+
 		
 		JLabel lblResultados = new JLabel("Resultados:");
 		
